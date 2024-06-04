@@ -1,0 +1,10 @@
+alias ll='ls -l'
+alias la='ls -lA'
+alias l='ls -CF'
+
+alias enter-venv='. ./venv/bin/activate'
+alias .enter-venv='. ./.venv/bin/activate'
+
+alias color-theme-light='rm ~/.config/sway/colors/main.conf && echo "include ./solarized-light.conf" > ~/.config/sway/colors/main.conf'
+alias color-theme-dark='rm ~/.config/sway/colors/main.conf && echo "include ./solarized-dark.conf" > ~/.config/sway/colors/main.conf'
+

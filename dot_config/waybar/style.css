@@ -1,0 +1,95 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: JetBrainsMonoNL NFM SemiBold, Hack, Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    min-height: 0;
+    color: @colours_fg;
+}
+
+window#waybar {
+    background-color: @colours_bg;
+    border-bottom: 1px solid @colours_fg;
+}
+
+tooltip {
+    background-color: @colours_bg;
+    border: 2px solid @colours_snd;
+}
+
+tooltip label {
+    color: @colours_fg;
+}
+
+#workspaces button {
+	padding: 0 6px;
+}
+
+#workspaces button.focused {
+    border-bottom: 3px solid @colours_fg;
+    border-top: 3px solid @colours_bg;
+}
+
+#taskbar {
+    margin-left: 0px;
+}
+
+#taskbar button {
+    padding: 0 5px;
+}
+
+#taskbar button.active {
+    background-color: @colours_fg;
+}
+
+#mode,
+#window {
+    margin-left: 8px;
+}
+
+#temperature,
+#memory,
+#disk {
+    padding: 0 5px;
+}
+
+#network,
+#pulseaudio {
+    font-size: 16px;
+}
+
+#bluetooth,
+#battery {
+    font-size: 12px;
+}
+
+#network {
+    margin-left: 6px;
+    border-left: 1px solid @colours_fg;
+}
+
+#language {
+    border-right: 1px solid @colours_fg;
+}
+
+#network,
+#bluetooth,
+#battery,
+#pulseaudio,
+#language {
+    padding: 0 10px;
+    background-color: @colours_bg_sub;
+    color: @colours_fg_sub;
+    border-bottom: 1px solid @colours_fg;
+}
+
+#keyboard-state {
+    margin-left: 9px;
+    margin-right: 10px;
+}
+
+#custom-power {
+    margin-left: 5px;
+    margin-right: 13px;
+    font-size: 16px;
+}
