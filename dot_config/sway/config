@@ -8,9 +8,9 @@ set $right k
 
 set $home /home/popovms
 set $font "JetBrainsMonoNL NFM Medium"
-set $bg $home/.config/sway/background/default.png
+set $bg background/default.png
 
-include $home/.config/sway/colors/main.conf
+include colors/main.conf
 
 exec_always mkdir -p $home/.config/gtk-3.0 && \
     rm -f $home/.config/gtk-3.0/colors.css && \
@@ -186,6 +186,11 @@ bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
 
+bindsym $mod+Control+Shift+Right move workspace to output right
+bindsym $mod+Control+Shift+Left move workspace to output left
+bindsym $mod+Control+Shift+Down move workspace to output down
+bindsym $mod+Control+Shift+Up move workspace to output up
+
 bindsym $mod+b splith
 bindsym $mod+v splitv
 
@@ -216,10 +221,6 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-
-bar {
-    swaybar_command waybar
-}
 
 for_window [class=".*"] inhibit_idle fullscreen
 for_window [app_id=".*"] inhibit_idle fullscreen
@@ -257,12 +258,17 @@ input type:pointer {
     pointer_accel -0.25
 }
 
-output * bg $bg fill
+bar {
+    swaybar_command waybar
+}
 
-include /etc/sway/config.d/*
+output * bg $bg fill
 
 exec systemctl --user import-environment XAUTHORITY XDG_CURRENT_DESKTOP
 exec dbus-update-activation-environment --systemd XAUTHORITY XDG_CURRENT_DESKTOP  
-# USED TO LOOK LIKE THIS  
-# exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XAUTHORITY XDG_CURRENT_DESKTOP
-# exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XAUTHORITY XDG_CURRENT_DESKTOP
+
+include /etc/sway/config.d/*
+
+# LOCAL OVERRIDES
+include local
+
