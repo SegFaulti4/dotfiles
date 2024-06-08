@@ -1,63 +1,16 @@
+include colors/main.conf
+
 set $mod Mod4
 set $alt Mod1
-
 set $left h
 set $down j
 set $up u
 set $right k
-
 set $home /home/popovms
-set $font "JetBrainsMonoNL NFM Medium"
-set $bg background/default.png
 
-include colors/main.conf
-
-exec_always mkdir -p $home/.config/gtk-3.0 && \
-    rm -f $home/.config/gtk-3.0/colors.css && \
-    echo >> $home/.config/gtk-3.0/colors.css -n "\
-@define-color colours_bg #$colours_bg;                       \n\
-@define-color colours_bg_sub #$colours_bg_sub;               \n\
-@define-color colours_snd #$colours_snd;                     \n\
-@define-color colours_fg #$colours_fg;                       \n\
-@define-color colours_fg_sub #$colours_fg_sub;               \n\
-@define-color colours_black #$colours_black;                 \n\
-@define-color colours_red #$colours_red;                     \n\
-@define-color colours_green #$colours_green;                 \n\
-@define-color colours_yellow #$colours_yellow;               \n\
-@define-color colours_blue #$colours_blue;                   \n\
-@define-color colours_magenta #$colours_magenta;             \n\
-@define-color colours_cyan #$colours_cyan;                   \n\
-@define-color colours_white #$colours_white;                 \n\
-@define-color colours_black_sub #$colours_black_sub;         \n\
-@define-color colours_red_sub #$colours_red_sub;             \n\
-@define-color colours_green_sub #$colours_green_sub;         \n\
-@define-color colours_yellow_sub #$colours_yellow_sub;       \n\
-@define-color colours_blue_sub #$colours_blue_sub;           \n\
-@define-color colours_magenta_sub #$colours_magenta_sub;     \n\
-@define-color colours_cyan_sub #$colours_cyan_sub;           \n\
-@define-color colours_white_sub #$colours_white_sub;         \n\
-"
-
-exec_always mkdir -p $home/.config/wob && \
-    rm -f $home/.config/wob/wob.ini && \
-    echo >> $home/.config/wob/wob.ini -n "\
-timeout = 1000                                  \n\
-max = 100                                       \n\
-width = 512                                     \n\
-height = 32                                     \n\
-border_offset = 0                               \n\
-border_size = 4                                 \n\
-bar_padding = 4                                 \n\
-anchor = bottom                                 \n\
-margin = 64                                     \n\
-border_color = $colours_fg_sub                  \n\
-background_color = $colours_bg_sub              \n\
-bar_color = $colours_green                      \n\
-overflow_border_color = $colours_fg_sub         \n\
-overflow_background_color = $colours_black      \n\
-overflow_bar_color = $colours_red_sub           \n\
-output_mode = focused                           \n\
-"
+#############
+# VARIABLES #
+#############
 
 set $fuzzel-cmd fuzzel \
     --background-color=#$colours_bgff \
@@ -91,55 +44,70 @@ set $term $foot-cmd
 set $menu $fuzzel-cmd || pkill fuzzel
 set $browser chromium
 set $file_manager thunar
-
-set $lock swaylock \
-    --image=$bg \
-    --scaling=fill \
-    --font=$font \
-    --font-size=30 \
-    --daemonize \
-    --ignore-empty-password \
-    --show-keyboard-layout \
-    --indicator-caps-lock \
-    --indicator-radius=160 \
-    --indicator-thickness=20
-    
-include /etc/sway/config-vars.d/*
-   
-# Drop-down terminal configuration
 set $ddterm-id dropdown-terminal
 set $ddterm $term --title $ddterm-id
 set $ddterm-resize resize set 100ppt 40ppt, move position 0 0
-
-for_window [title="$ddterm-id"] {
-  floating enable
-  $ddterm-resize
-  move to scratchpad
-  scratchpad show
-}
-
-bindsym F12 exec swaymsg '[title="$ddterm-id"] scratchpad show' || $ddterm \
-  && sleep .1 && swaymsg '[title="$ddterm-id"] $ddterm-resize'
-  
-# Volume controls configuration
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+
+###########
+# SCRIPTS #
+###########
+
+exec_always mkdir -p $home/.config/gtk-3.0 && \
+    rm -f $home/.config/gtk-3.0/colors.css && \
+    echo >> $home/.config/gtk-3.0/colors.css -n "\
+@define-color colours_bg #$colours_bg;                       \n\
+@define-color colours_bg_sub #$colours_bg_sub;               \n\
+@define-color colours_snd #$colours_snd;                     \n\
+@define-color colours_fg #$colours_fg;                       \n\
+@define-color colours_fg_sub #$colours_fg_sub;               \n\
+@define-color colours_black #$colours_black;                 \n\
+@define-color colours_red #$colours_red;                     \n\
+@define-color colours_green #$colours_green;                 \n\
+@define-color colours_yellow #$colours_yellow;               \n\
+@define-color colours_blue #$colours_blue;                   \n\
+@define-color colours_magenta #$colours_magenta;             \n\
+@define-color colours_cyan #$colours_cyan;                   \n\
+@define-color colours_white #$colours_white;                 \n\
+@define-color colours_black_sub #$colours_black_sub;         \n\
+@define-color colours_red_sub #$colours_red_sub;             \n\
+@define-color colours_green_sub #$colours_green_sub;         \n\
+@define-color colours_yellow_sub #$colours_yellow_sub;       \n\
+@define-color colours_blue_sub #$colours_blue_sub;           \n\
+@define-color colours_magenta_sub #$colours_magenta_sub;     \n\
+@define-color colours_cyan_sub #$colours_cyan_sub;           \n\
+@define-color colours_white_sub #$colours_white_sub;         \n\
+"
+exec_always mkdir -p $home/.config/wob && \
+    rm -f $home/.config/wob/wob.ini && \
+    echo >> $home/.config/wob/wob.ini -n "\
+timeout = 1000                                  \n\
+max = 100                                       \n\
+width = 512                                     \n\
+height = 32                                     \n\
+border_offset = 0                               \n\
+border_size = 4                                 \n\
+bar_padding = 4                                 \n\
+anchor = bottom                                 \n\
+margin = 64                                     \n\
+border_color = $colours_fg_sub                  \n\
+background_color = $colours_bg_sub              \n\
+bar_color = $colours_green                      \n\
+overflow_border_color = $colours_fg_sub         \n\
+overflow_background_color = $colours_black      \n\
+overflow_bar_color = $colours_red_sub           \n\
+output_mode = focused                           \n\
+"
 exec_always rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
-
-bindsym XF86AudioRaiseVolume exec pamixer -i 5 && pamixer --get-volume > $WOBSOCK
-bindsym XF86AudioLowerVolume exec pamixer -d 5 && pamixer --get-volume > $WOBSOCK
-bindsym XF86AudioMute exec pamixer --toggle-mute && ( [ "$(pamixer --get-mute)" = "true" ] && echo 0 > $WOBSOCK ) || pamixer --get-volume > $WOBSOCK
-
 exec gammastep -l 0:0 -m wayland -t 4000:4000
-exec swayidle -w \
-    timeout 300 '$lock' \
-    timeout 600 'swaymsg "output * dpms off"' \
-        resume 'swaymsg "output * dpms on"' \
-    before-sleep '$lock'
+
+################
+# KEY BINDINGS #
+################
 
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
-bindsym $mod+l exec $lock
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -148,7 +116,6 @@ bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
-
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -158,7 +125,6 @@ bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
-
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -193,7 +159,6 @@ bindsym $mod+Control+Shift+Up move workspace to output up
 
 bindsym $mod+b splith
 bindsym $mod+v splitv
-
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
@@ -202,7 +167,6 @@ bindsym $mod+f fullscreen
 bindsym $mod+Shift+space floating toggle
 # bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
-
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
@@ -222,16 +186,36 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+bindsym XF86AudioRaiseVolume exec pamixer -i 5 && pamixer --get-volume > $WOBSOCK
+bindsym XF86AudioLowerVolume exec pamixer -d 5 && pamixer --get-volume > $WOBSOCK
+bindsym XF86AudioMute exec pamixer --toggle-mute && ( [ "$(pamixer --get-mute)" = "true" ] && echo 0 > $WOBSOCK ) || pamixer --get-volume > $WOBSOCK
+
+bindsym F12 exec swaymsg '[title="$ddterm-id"] scratchpad show' || $ddterm \
+  && sleep .1 && swaymsg '[title="$ddterm-id"] $ddterm-resize'
+
+####################
+# WINDOW OVERRIDES #
+####################
+
 for_window [class=".*"] inhibit_idle fullscreen
 for_window [app_id=".*"] inhibit_idle fullscreen
-
 for_window [app_id="^nm-connection-editor$"] floating enable
 for_window [app_id="^blueman-manager$"] floating enable
 for_window [app_id="^pavucontrol$"] floating enable
 for_window [app_id="^thunar$"] floating enable
 for_window [app_id="^xarchiver$"] floating enable
-
 for_window [app_id="^foot$"] opacity 0.96
+
+for_window [title="$ddterm-id"] {
+  floating enable
+  $ddterm-resize
+  move to scratchpad
+  scratchpad show
+}
+
+#################
+# MISCELLANEOUS #
+#################
 
 # Colors : border bg text indicator child_border
 client.focused          #$colours_fg_sub  #$colours_fg_sub  #$colours_fg_sub  #$colours_fg_sub #$colours_fg_sub
@@ -247,28 +231,56 @@ floating_modifier $mod normal
 workspace_layout default
 focus_follows_mouse no
 
+bar {
+    swaybar_command waybar
+}
+
+###################
+# LOCAL OVERRIDES #
+###################
+
 input type:keyboard {
     repeat_delay 200
     repeat_rate 40
     xkb_layout us,ru
 }
-
 input type:pointer {
     accel_profile "flat"
     pointer_accel -0.25
 }
 
-bar {
-    swaybar_command waybar
-}
+set $font "JetBrainsMonoNL NFM Medium"
+set $bg $home/.config/sway/background/default.png
+
+include local
 
 output * bg $bg fill
+
+set $lock swaylock \
+    --image=$bg \
+    --scaling=fill \
+    --font=$font \
+    --font-size=30 \
+    --daemonize \
+    --ignore-empty-password \
+    --show-keyboard-layout \
+    --indicator-caps-lock \
+    --indicator-radius=160 \
+    --indicator-thickness=20
+
+bindsym $mod+l exec $lock
+exec swayidle -w \
+    timeout 300 '$lock' \
+    timeout 600 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"' \
+    before-sleep '$lock'
+
+########################
+# SYSTEM CONFIGURATION #
+########################
 
 exec systemctl --user import-environment XAUTHORITY XDG_CURRENT_DESKTOP
 exec dbus-update-activation-environment --systemd XAUTHORITY XDG_CURRENT_DESKTOP  
 
 include /etc/sway/config.d/*
-
-# LOCAL OVERRIDES
-include local
 
