@@ -8,3 +8,9 @@ alias .enter-venv='. ./.venv/bin/activate'
 alias color-theme-light='rm -f ~/.config/sway/colors/main.conf && echo "include ./solarized-light.conf" > ~/.config/sway/colors/main.conf'
 alias color-theme-dark='rm -f ~/.config/sway/colors/main.conf && echo "include ./solarized-dark.conf" > ~/.config/sway/colors/main.conf'
 
+alias vpn-enable='sudo openvpn3 session-start --config acloud'
+alias vpn-disable='sudo openvpn3 session-manage --disconnect --config acloud'
+
+alias tosca-michman='. ./load_aliases.sh'
+alias michman_launch='michman_dummy down -v --remove-orphans && michman_dummy build && michman_dummy up -d --wait && michman_dummy logs -f repository-preload && michman_dummy logs -f orchestrator repository'
+alias michman_test_launch='michman_dummy down -v --remove-orphans && michman_dummy build && michman_dummy up --abort-on-container-failure'
