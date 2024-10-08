@@ -13,5 +13,14 @@ alias vpn-enable='sudo openvpn3 session-start --config acloud'
 alias vpn-disable='sudo openvpn3 session-manage --disconnect --config acloud'
 
 alias tosca-michman='. ./load_aliases.sh'
-alias michman_launch='michman_dummy down -v --remove-orphans && michman_dummy build && michman_dummy up -d --wait && michman_dummy logs -f repository-preload && michman_dummy logs -f orchestrator repository'
+
 alias michman_test_launch='michman_dummy down -v --remove-orphans && michman_dummy build && michman_dummy up --abort-on-container-failure'
+
+alias michman_dummy_launch='michman_dummy down -v --remove-orphans && michman_dummy build && michman_dummy up -d --wait && michman_dummy logs -f repository-preload && michman_dummy logs -f orchestrator repository'
+alias michman_keycloak_launch='michman_keycloak down -v --remove-orphans && michman_keycloak build && michman_keycloak up -d --wait && michman_keycloak logs -f repository-preload && michman_keycloak logs -f orchestrator repository'
+alias michman_keystone_launch='michman_keystone down -v --remove-orphans && michman_keystone build && michman_keystone up -d --wait && michman_keystone logs -f repository-preload && michman_keystone logs -f orchestrator repository'
+
+alias michman_dummy_dev_launch='michman_dummy_dev down -v --remove-orphans && michman_dummy_dev build && michman_dummy_dev up -d --wait && michman_dummy_dev logs -f repository-preload && michman_dummy_dev logs -f orchestrator repository'
+alias michman_keycloak_dev_launch='michman_keycloak_dev down -v --remove-orphans && michman_keycloak_dev build && michman_keycloak_dev up -d --wait && michman_keycloak_dev logs -f repository-preload && michman_keycloak_dev logs -f orchestrator repository'
+alias michman_keystone_dev_launch='michman_keystone_dev down -v --remove-orphans && michman_keystone_dev build && michman_keystone_dev up -d --wait && michman_keystone_dev logs -f repository-preload && michman_keystone_dev logs -f orchestrator repository'
+
