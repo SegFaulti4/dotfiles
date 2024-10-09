@@ -33,7 +33,7 @@
         "tooltip": true
     },
     "temperature": {
-        "thermal-zone": 7,
+        "thermal-zone": 0,
         "format": "TEMP {temperatureC}°C",
         "interval": 3,
         "tooltip": false
@@ -87,7 +87,7 @@
         "tooltip": true
     },
     "pulseaudio#mic": {
-    	"scroll-step": 0,
+	"scroll-step": 0,
         "format": "{format_source}",
         "format-source": "󰍬",
         "format-source-muted": "󰍭",
