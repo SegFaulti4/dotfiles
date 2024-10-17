@@ -254,7 +254,7 @@ set $lock swaylock \
     --indicator-radius=160 \
     --indicator-thickness=20
 
-bindsym $mod+l --to-code exec $lock
+bindsym $mod+l exec $lock
 exec swayidle -w \
     timeout 300 '$lock' \
     timeout 600 'swaymsg "output * dpms off"' \
