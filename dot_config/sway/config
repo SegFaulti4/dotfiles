@@ -45,6 +45,7 @@ set $ddterm $term --title=$ddterm-id --app-id=$ddterm-id
 set $ddterm-resize resize set 100ppt 40ppt, move position 0 0
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 set $screenshot-area grim -g "$(slurp)" - | wl-copy && dunstify --timeout 2000 "Screenshot copied to clipboard"
+set $screenshot-area-save grim -g "$(slurp)" ~/pictures/$(date +"%d-%m-%Y-%H-%M-%S").png && dunstify --timeout 2000 "Screenshot saved to ~/pictures/$(date +"%d-%m-%Y-%H-%M-%S").png"
 
 ###########
 # SCRIPTS #
@@ -174,6 +175,7 @@ bindsym --to-code $mod+Shift+t exec swaymsg '[app_id="$ddterm-id"] scratchpad sh
   && sleep .1 && swaymsg '[app_id="$ddterm-id"] $ddterm-resize'
 
 bindsym Print exec $screenshot-area
+bindsym $alt+Print exec $screenshot-area-save
 
 ####################
 # WINDOW OVERRIDES #
@@ -212,10 +214,6 @@ hide_edge_borders smart
 floating_modifier $mod normal
 workspace_layout default
 focus_follows_mouse no
-
-bar {
-    swaybar_command waybar
-}
 
 ###################
 # LOCAL OVERRIDES #
@@ -256,6 +254,10 @@ exec swayidle -w \
     timeout 600 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"' \
     before-sleep '$lock'
+
+bar {
+    swaybar_command waybar
+}
 
 ########################
 # SYSTEM CONFIGURATION #
