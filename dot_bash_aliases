@@ -2,6 +2,9 @@ alias ll='ls -l'
 alias la='ls -lA'
 alias l='ls -CF'
 
+alias ssh-no='ssh -o StrictHostKeychecking=no'
+alias scp-no='scp -o StrictHostKeychecking=no'
+
 alias enter-venv='. ./venv/bin/activate'
 alias .enter-venv='. ./.venv/bin/activate'
 
@@ -16,11 +19,50 @@ alias tosca-michman='. ~/scripts/tosca_michman.sh'
 
 alias michman_test_launch='michman_dummy down --remove-orphans && michman_dummy build && michman_dummy up --abort-on-container-failure'
 
+<<<<<<< HEAD
 alias michman_dummy_launch='michman_dummy down --remove-orphans && michman_dummy build && michman_dummy up -d --wait && michman_dummy logs -f preload && michman_dummy logs -f orchestrator repository provider'
 alias michman_keycloak_launch='michman_keycloak down --remove-orphans && michman_keycloak build && michman_keycloak up -d --wait && michman_keycloak logs -f preload && michman_keycloak logs -f orchestrator repository provider'
 alias michman_keystone_launch='michman_keystone down --remove-orphans && michman_keystone build && michman_keystone up -d --wait && michman_keystone logs -f preload && michman_keystone logs -f orchestrator repository provider'
 
 alias michman_dummy_dev_launch='michman_dummy_dev down --remove-orphans && michman_dummy_dev build && michman_dummy_dev up -d --wait && michman_dummy_dev logs -f preload && michman_dummy_dev logs -f orchestrator repository provider'
+=======
+alias michman_launch='michman_dummy down --remove-orphans && michman_dummy build && michman_dummy up -d --wait && michman_dummy logs -f preload && michman_dummy logs -f orchestrator repository provider'
+alias michman_keycloak_launch='michman_keycloak down --remove-orphans && michman_keycloak build && michman_keycloak up -d --wait && michman_keycloak logs -f preload && michman_keycloak logs -f orchestrator repository provider'
+alias michman_keystone_launch='michman_keystone down --remove-orphans && michman_keystone build && michman_keystone up -d --wait && michman_keystone logs -f preload && michman_keystone logs -f orchestrator repository provider'
+
+alias michman_dev_launch='michman_dummy_dev down --remove-orphans && michman_dummy_dev build && michman_dummy_dev up -d --wait && michman_dummy_dev logs -f preload && michman_dummy_dev logs -f orchestrator repository provider'
+>>>>>>> c5bdef2 (rename michman aliases, add trackball config for galeon)
+alias michman_keycloak_dev_launch='michman_keycloak_dev down --remove-orphans && michman_keycloak_dev build && michman_keycloak_dev up -d --wait && michman_keycloak_dev logs -f preload && michman_keycloak_dev logs -f orchestrator repository provider'
+alias michman_keystone_dev_launch='michman_keystone_dev down --remove-orphans && michman_keystone_dev build && michman_keystone_dev up -d --wait && michman_keystone_dev logs -f preload && michman_keystone_dev logs -f orchestrator repository provider'
+
+alias openstack-cli='. ~/scripts/openstack_cli.sh'
+
+alias ll='ls -l'
+alias la='ls -lA'
+alias l='ls -CF'
+
+alias ssh-no='ssh -o StrictHostKeychecking=no'
+alias scp-no='scp -o StrictHostKeychecking=no'
+
+alias enter-venv='. ./venv/bin/activate'
+alias .enter-venv='. ./.venv/bin/activate'
+
+alias vial='~/scripts/Vial*.AppImage'
+alias color-theme-light='rm -f ~/.config/sway/colors/main.conf && echo "include ./solarized-light.conf" > ~/.config/sway/colors/main.conf'
+alias color-theme-dark='rm -f ~/.config/sway/colors/main.conf && echo "include ./solarized-dark.conf" > ~/.config/sway/colors/main.conf'
+
+alias vpn-enable='sudo openvpn3 session-start --config ~/michman_access/acloud.ovpn'
+alias vpn-disable='sudo openvpn3 session-manage --config ~/michman_access/acloud.ovpn --disconnect'
+
+alias tosca-michman='. ~/scripts/tosca_michman.sh'
+
+alias michman_test_launch='michman_dummy down --remove-orphans && michman_dummy build && michman_dummy up --abort-on-container-failure'
+
+alias michman_launch='michman_dummy down --remove-orphans && michman_dummy build && michman_dummy up -d --wait && michman_dummy logs -f preload && michman_dummy logs -f orchestrator repository provider'
+alias michman_keycloak_launch='michman_keycloak down --remove-orphans && michman_keycloak build && michman_keycloak up -d --wait && michman_keycloak logs -f preload && michman_keycloak logs -f orchestrator repository provider'
+alias michman_keystone_launch='michman_keystone down --remove-orphans && michman_keystone build && michman_keystone up -d --wait && michman_keystone logs -f preload && michman_keystone logs -f orchestrator repository provider'
+
+alias michman_dev_launch='michman_dummy_dev down --remove-orphans && michman_dummy_dev build && michman_dummy_dev up -d --wait && michman_dummy_dev logs -f preload && michman_dummy_dev logs -f orchestrator repository provider'
 alias michman_keycloak_dev_launch='michman_keycloak_dev down --remove-orphans && michman_keycloak_dev build && michman_keycloak_dev up -d --wait && michman_keycloak_dev logs -f preload && michman_keycloak_dev logs -f orchestrator repository provider'
 alias michman_keystone_dev_launch='michman_keystone_dev down --remove-orphans && michman_keystone_dev build && michman_keystone_dev up -d --wait && michman_keystone_dev logs -f preload && michman_keystone_dev logs -f orchestrator repository provider'
 
