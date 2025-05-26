@@ -202,12 +202,12 @@ for_window [title="$ddterm-id"] {
 #################
 
 # Colors : border bg text indicator child_border
-client.focused          #$colours_magenta  #$colours_magenta  #$colours_magenta   #$colours_magenta  #$colours_magenta
+client.focused          #$colours_fg_sub  #$colours_fg_sub  #$colours_fg_sub   #$colours_fg_sub  #$colours_fg_sub
 client.focused_inactive #$colours_snd #$colours_snd #$colours_snd #$colours_snd #$colours_snd
 client.unfocused        #$colours_bg_sub  #$colours_bg_sub  #$colours_bg_sub  #$colours_bg_sub #$colours_bg_sub
 client.urgent           #$colours_red_sub #$colours_red_sub #$colours_red_sub #$colours_red_sub #$colours_red_sub
 
-default_border pixel 2
+default_border pixel 3
 default_floating_border pixel 1
 
 hide_edge_borders smart
