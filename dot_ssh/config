@@ -1,0 +1,9 @@
+Host *github.com
+	IdentityFile ~/.ssh/id_git
+
+Host *
+	IdentityFile ~/.ssh/id_git
+	IdentityFile ~/.ssh/id_ed25519
+	IdentityFile ~/.ssh/id_external
+	IdentityFile ~/.ssh/accentos_key
+	SetEnv TERM=xterm
