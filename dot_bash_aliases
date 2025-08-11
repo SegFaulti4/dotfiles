@@ -12,8 +12,8 @@ alias vial='~/scripts/Vial*.AppImage'
 alias color-theme-light='rm -f ~/.config/sway/colors/main.conf && echo "include ./solarized-light.conf" > ~/.config/sway/colors/main.conf'
 alias color-theme-dark='rm -f ~/.config/sway/colors/main.conf && echo "include ./solarized-dark.conf" > ~/.config/sway/colors/main.conf'
 
-alias vpn-enable='sudo openvpn3 session-start --config ~/michman_access/acloud.ovpn'
-alias vpn-disable='sudo openvpn3 session-manage --config ~/michman_access/acloud.ovpn --disconnect'
+alias vpn-enable='sudo openvpn3 session-start --config ~/secrets/acloud.ovpn'
+alias vpn-disable='sudo openvpn3 session-manage --config ~/secrets/acloud.ovpn --disconnect'
 
 alias tosca-michman='. ~/scripts/tosca_michman.sh'
 
