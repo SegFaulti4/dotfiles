@@ -1,3 +1,16 @@
+########################
+# SYSTEM CONFIGURATION #
+########################
+
+#exec systemctl --user import-environment XAUTHORITY XDG_CURRENT_DESKTOP
+#exec dbus-update-activation-environment --systemd XAUTHORITY XDG_CURRENT_DESKTOP
+
+include /etc/sway/config.d/*
+
+##########
+# COMMON #
+##########
+
 include colors/main.conf
 
 set $mod Mod4
@@ -9,12 +22,17 @@ set $home /home/popovms
 #############
 
 set $fuzzel-cmd fuzzel \
-    --background-color=#$colours_bgff \
-    --text-color=#$colours_fgff \
-    --match-color=#$colours_red_subff \
-    --selection-color=#$colours_bg_subff \
-    --selection-text-color=#$colours_fg_subff \
-    --border-color=#$colours_fgff
+    --background-color=$colours_bgff \
+    --text-color=$colours_fgff \
+    --prompt-color=$colours_fgff \
+    --placeholder-color=$colours_fgff \
+    --input-color=$colours_fgff \
+    --match-color=$colours_red_subff \
+    --selection-color=$colours_sndff \
+    --selection-text-color=$colours_fgff \
+    --selection-match-color=$colours_red_subff \
+    --counter-color=$colours_fgff \
+    --border-color=$colours_fgff
 
 set $foot-cmd foot \
     --override=colors.foreground=$colours_fg \
@@ -207,7 +225,7 @@ client.focused_inactive #$colours_snd #$colours_snd #$colours_snd #$colours_snd 
 client.unfocused        #$colours_bg_sub  #$colours_bg_sub  #$colours_bg_sub  #$colours_bg_sub #$colours_bg_sub
 client.urgent           #$colours_red_sub #$colours_red_sub #$colours_red_sub #$colours_red_sub #$colours_red_sub
 
-default_border pixel 3
+default_border pixel 2
 default_floating_border pixel 1
 
 hide_edge_borders smart
@@ -258,13 +276,4 @@ exec swayidle -w \
 bar {
     swaybar_command waybar
 }
-
-########################
-# SYSTEM CONFIGURATION #
-########################
-
-exec systemctl --user import-environment XAUTHORITY XDG_CURRENT_DESKTOP
-exec dbus-update-activation-environment --systemd XAUTHORITY XDG_CURRENT_DESKTOP  
-
-include /etc/sway/config.d/*
 
