@@ -123,7 +123,8 @@ exec gammastep -l 0:0 -m wayland -t 4000:4000
 
 bindsym --to-code $mod+Return exec $term
 bindsym --to-code $mod+Shift+q kill
-bindsym --to-code $mod+Shift+b exec swaymsg bar mode toggle
+bindsym --to-code $mod+Shift+b exec swaymsg bar mode invisible
+bindsym --to-code $mod+Shift+v exec swaymsg bar mode dock
 bindsym --to-code $mod+d exec $menu
 
 bindsym --to-code $mod+Shift+c reload
