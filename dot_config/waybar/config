@@ -1,11 +1,12 @@
 {
+    "ipc": true,
     "layer": "bottom",
     "position": "top",
     "height": 0,
     "spacing": 0,
     "modules-left": ["sway/workspaces", "wlr/taskbar", "sway/mode", "sway/window"],
     "modules-center": ["clock"],
-    "modules-right": ["temperature", "memory", "disk", "network", "bluetooth", "pulseaudio", "pulseaudio#mic", "battery", "sway/language", "keyboard-state", "custom/power"],
+    "modules-right": ["temperature", "memory", "disk", "network", "pulseaudio", "pulseaudio#mic", "battery", "sway/language", "keyboard-state", "custom/power"],
     "sway/workspaces": {
         "disable-scroll": true,
         "disable-click": false,
@@ -14,9 +15,12 @@
         "tooltip": false
     },
     "wlr/taskbar": {
+        "all-outputs": true,
+        "sort-by-app-id": true,
         "format": "{icon}",
         "icon-size": 14,
         "icon-theme": "Vimix",
+        "tooltip": true,
         "tooltip-format": "{title} | {state}",
         "on-click": "activate",
         "on-click-middle": "close",
