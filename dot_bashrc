@@ -112,10 +112,15 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -f ~/scripts/tosca_michman.sh ]; then
-    . ~/scripts/tosca_michman.sh
-fi
+completions=(tosca_michman.sh openstack_cli.sh ya.bash yazi.bash)
 
-if [ -f ~/scripts/openstack_cli.sh ]; then
-    . ~/scripts/openstack_cli.sh
-fi
+for compl in "${completions[@]}"; do
+    if [ -f ~/scripts/$compl ]; then
+        . ~/scripts/$compl
+    fi
+done
+
+export EDITOR=micro
+
+___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
+

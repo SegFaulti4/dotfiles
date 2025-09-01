@@ -8,20 +8,14 @@ alias scp-no='scp -o StrictHostKeychecking=no'
 alias enter-venv='. ./venv/bin/activate'
 alias .enter-venv='. ./.venv/bin/activate'
 
-alias vial='~/scripts/Vial*.AppImage'
 alias color-theme-light='rm -f ~/.config/sway/colors/main.conf && echo "include ./solarized-light.conf" > ~/.config/sway/colors/main.conf'
 alias color-theme-dark='rm -f ~/.config/sway/colors/main.conf && echo "include ./solarized-dark.conf" > ~/.config/sway/colors/main.conf'
 
 alias vpn-enable='sudo openvpn3 session-start --config ~/secrets/acloud.ovpn'
 alias vpn-disable='sudo openvpn3 session-manage --config ~/secrets/acloud.ovpn --disconnect'
 
-alias tosca-michman='. ~/scripts/tosca_michman.sh'
-
 alias michman_test_launch='michman_dummy down --remove-orphans && michman_dummy build && michman_dummy up --abort-on-container-failure'
 
 alias michman_launch='michman_dummy_dev down --remove-orphans && michman_dummy_dev build && michman_dummy_dev up -d --wait && michman_dummy_dev logs -f preload && michman_dummy_dev logs -f orchestrator provider'
 alias michman_keycloak_launch='michman_keycloak_dev down --remove-orphans && michman_keycloak_dev build && michman_keycloak_dev up -d --wait && michman_keycloak_dev logs -f preload && michman_keycloak_dev logs -f orchestrator provider'
 alias michman_keystone_launch='michman_keystone_dev down --remove-orphans && michman_keystone_dev build && michman_keystone_dev up -d --wait && michman_keystone_dev logs -f preload && michman_keystone_dev logs -f orchestrator provider'
-
-alias openstack-cli='. ~/scripts/openstack_cli.sh'
-
