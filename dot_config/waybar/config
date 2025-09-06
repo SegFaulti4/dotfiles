@@ -1,0 +1,202 @@
+{
+    "ipc": true,
+    "layer": "bottom",
+    "position": "top",
+    "height": 0,
+    "spacing": 0,
+    "modules-left": ["sway/workspaces", "wlr/taskbar", "sway/mode", "sway/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["temperature", "memory", "disk", "network", "pulseaudio", "pulseaudio#mic", "battery", "sway/language", "keyboard-state", "custom/power"],
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "disable-click": false,
+        "all-outputs": true,
+        "format": "{index}",
+        "tooltip": false
+    },
+    "wlr/taskbar": {
+        "all-outputs": true,
+        "sort-by-app-id": true,
+        "format": "{icon}",
+        "icon-size": 14,
+        "icon-theme": "Vimix",
+        "tooltip": true,
+        "tooltip-format": "{title} | {state}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": ["dropdown-terminal"]
+    },
+    "sway/mode": {
+        "format": "({})",
+        "max-length": 50
+    },
+    "sway/window": {
+        "format": "{title}",
+        "max-length": 80,
+        "icon": false,
+        "tooltip": true
+    },
+    "temperature": {
+        "thermal-zone": 8,
+        "format": "TEMP {temperatureC}°C",
+        "interval": 3,
+        "tooltip": false
+    },
+    "memory": {
+        "format": "RAM {used}Gib",
+        "interval": 3,
+        "tooltip-format": "Used RAM: {used}Gib\nAvail RAM: {avail}Gib\nTotal RAM: {total}Gib\nUsed Swap: {swapUsed}Gib\nAvail Swap: {swapAvail}Gib\nTotal Swap: {swapTotal}Gib",
+        "tooltip": true
+    },
+    "disk": {
+        "interval": 15,
+        "format": "DISK {used}",
+        "path": "/",
+        "tooltip-format": "Used Storage: {used}\nFree Storage: {free}\nTotal Storage: {total}",
+        "tooltip": true
+    },
+    "network": {
+        "format-wifi": "󰖩",
+        "format-ethernet": "󰈀",
+        "format-linked": "󱦂",
+        "format-disconnected": "󰖪",
+        "interval": 1,
+        "tooltip-format": "Interface: {ifname}\nGateway: {gwaddr}\nIP: {ipaddr}/{cidr}\nSpeed: {bandwidthDownBits} | {bandwidthUpBits}",
+        "tooltip-format-wifi": "Interface: {ifname}\nGateway: {gwaddr}\nIP: {ipaddr}/{cidr}\nSpeed: {bandwidthDownBits} | {bandwidthUpBits}\nWiFi SSID: {essid}\nWiFi Frequency: {frequency} MHz\nWiFi Signal: {signaldBm} dBm",
+        "on-click": "nm-connection-editor",
+        "tooltip": true
+    },
+    "bluetooth": {
+        "format": "󰂯 {status}",
+        "format-disabled": "󰂲",
+        "format-off": "󰂲",
+        "format-on": "󰂯",
+        "format-connected": "󰂱",
+        "on-click": "blueman-manager",
+        "tooltip": true,
+        "tooltip-format": "Controller: {controller_alias}\nStatus: {status}\nAddress: {controller_address}\nType: {controller_address_type}",
+        "tooltip-format-connected": "Controller: {controller_alias}\nStatus: {status}\nAddress: {controller_address}\nType: {controller_address_type}\nConnections:\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}: {device_address}"
+    },
+    "pulseaudio": {
+        "scroll-step": 5,
+        "format": "{icon}",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "default": ["󰝞", "󰝝", "󰕾"]
+        },
+        "on-click": "pavucontrol --tab=3",
+        "on-click-middle": "pamixer --toggle-mute",
+        "tooltip-format": "Device: {desc}\nVolume: {volume}",
+        "tooltip": true
+    },
+    "pulseaudio#mic": {
+	"scroll-step": 0,
+        "format": "{format_source}",
+        "format-source": "󰍬",
+        "format-source-muted": "󰍭",
+        "on-click": "pavucontrol --tab=4",
+        "tooltip-format": "Device: {desc}\nVolume: {volume}",
+        "tooltip": true
+    },
+    "battery": {
+        "interval": 30,
+        "format": "{icon}",
+        "format-charging": "󰂄",
+        "format-plugged": "󰚥",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip-format": "Capacity: {capacity}\nPower draw: {power} W\nTime: {timeTo}",
+        "tooltip": true
+    },
+    "sway/language": {
+        "format": "{short}",
+        "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+        "tooltip": false
+    },
+    "keyboard-state": {
+        "capslock": true,
+        "format": {
+            "capslock": "{icon}"
+        },
+        "format-icons": {
+            "locked": "CAPS",
+            "unlocked": "caps",
+        }
+    },
+    "custom/power": { 
+        "format": "", 
+        "on-click": "swaynag -t warning -m 'Power Menu Options' -b 'Logout' 'swaymsg exit' -b 'Suspend' 'swaymsg exec systemctl suspend' -b 'Shutdown' 'swaymsg exec systemctl poweroff' -b 'Reboot' 'swaymsg exec systemctl reboot'",
+        "tooltip": false
+    },
+    "custom/split1": {
+        "format": "|"
+    },
+    "custom/split2": {
+        "format": "|"
+    },
+    
+    
+    
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+    "mpd": {
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "unknown-tag": "N/A",
+        "interval": 2,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    }
+}
+

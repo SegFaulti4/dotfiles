@@ -1,0 +1,25 @@
+include themes/catppuccin-mocha.conf
+set $colours_accent $colours_blue
+set $colours_title $colours_green
+set $colours_extra $colours_magenta
+
+set $bg $home/.config/sway/backgrounds/scifi.jpg
+set $font "JetBrainsMonoNL NFM Medium"
+
+set $font_size_term 10
+set $font_size_lock 30
+set $font_size_menu 12
+
+set $icons Papirus
+set $theme_gtk catppuccin-mocha-blue-standard+default
+set $cursor_gtk Paper
+
+input type:keyboard {
+    repeat_delay 200
+    repeat_rate 40
+    xkb_layout us,ru
+}
+input type:pointer {
+    accel_profile "flat"
+    pointer_accel -0.25
+}

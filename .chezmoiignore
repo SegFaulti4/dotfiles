@@ -1,0 +1,10 @@
+.config/sway/.local
+.config/foot/foot.ini
+.config/fuzzel/fuzzel.ini
+.config/micro/settings.json
+.config/swaylock/config
+.config/waybar/style.css
+.config/wob/wob.ini
+.config/yazi/theme.toml
+.ssh
+secrets

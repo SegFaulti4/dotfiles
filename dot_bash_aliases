@@ -1,0 +1,18 @@
+alias ll='ls -l'
+alias la='ls -lA'
+alias l='ls -CF'
+
+alias ssh-no='ssh -o StrictHostKeychecking=no'
+alias scp-no='scp -o StrictHostKeychecking=no'
+
+alias enter-venv='. ./venv/bin/activate'
+alias .enter-venv='. ./.venv/bin/activate'
+
+alias vpn-enable='sudo openvpn3 session-start --config ~/secrets/acloud.ovpn'
+alias vpn-pass='keepassxc-cli clip ~/secrets/all.kdbx "acloud vpn"'
+alias vpn-totp='keepassxc-cli clip ~/secrets/all.kdbx "acloud vpn" --totp'
+
+alias michman_test_launch='michman_dummy down --remove-orphans && michman_dummy build && michman_dummy up --abort-on-container-failure'
+alias michman_launch='michman_dummy_dev down --remove-orphans && michman_dummy_dev build && michman_dummy_dev up -d --wait && michman_dummy_dev logs -f preload && michman_dummy_dev logs -f orchestrator provider'
+alias michman_keycloak_launch='michman_keycloak_dev down --remove-orphans && michman_keycloak_dev build && michman_keycloak_dev up -d --wait && michman_keycloak_dev logs -f preload && michman_keycloak_dev logs -f orchestrator provider'
+alias michman_keystone_launch='michman_keystone_dev down --remove-orphans && michman_keystone_dev build && michman_keystone_dev up -d --wait && michman_keystone_dev logs -f preload && michman_keystone_dev logs -f orchestrator provider'
