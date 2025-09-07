@@ -2,9 +2,6 @@
 # SYSTEM CONFIGURATION #
 ########################
 
-#exec systemctl --user import-environment XAUTHORITY XDG_CURRENT_DESKTOP
-#exec dbus-update-activation-environment --systemd XAUTHORITY XDG_CURRENT_DESKTOP
-
 include /etc/sway/config.d/*
 
 ########
@@ -22,7 +19,7 @@ set $lock swaylock
 
 set $file-manager $term yazi
 set $text-editor $term micro
-set $browser chromium
+set $browser google-chrome
 set $messenger /opt/Telegram/Telegram
 set $ide /opt/pycharm/bin/pycharm
 
@@ -47,10 +44,10 @@ include .local
 #################
 
 # Colors : border bg text indicator child_border
-client.focused          #$colours_fg #$colours_bg #$colours_fg #$colours_snd #$colours_extra
-client.focused_inactive #$colours_fg #$colours_bg #$colours_fg #$colours_snd #$colours_snd
-client.unfocused        #$colours_fg #$colours_bg #$colours_fg #$colours_snd #$colours_bg_sub
-client.urgent           #$colours_fg #$colours_bg #$colours_fg #$colours_snd #$colours_red_sub
+client.focused          #$colours_extra #$colours_bg_sub #$colours_extra #$colours_fg #$colours_extra
+client.focused_inactive #$colours_fg_sub #$colours_bg_sub #$colours_fg_sub #$colours_fg_sub #$colours_snd
+client.unfocused        #$colours_snd #$colours_bg #$colours_snd #$colours_snd #$colours_bg_sub
+client.urgent           #$colours_red_sub #$colours_bg #$colours_red_sub #$colours_snd #$colours_red_sub
 
 default_border pixel 1
 default_floating_border pixel 1
@@ -60,6 +57,7 @@ floating_modifier $mod normal
 workspace_layout default
 focus_follows_mouse no
 
+font $font $font_size_sway
 output * bg $bg fill
 
 bar {
