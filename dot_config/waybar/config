@@ -37,7 +37,7 @@
         "tooltip": true
     },
     "temperature": {
-        "thermal-zone": 8,
+        "thermal-zone": 2,
         "format": "TEMP {temperatureC}°C",
         "interval": 3,
         "tooltip": false
@@ -51,7 +51,7 @@
     "disk": {
         "interval": 15,
         "format": "DISK {used}",
-        "path": "/",
+        "path": "/home",
         "tooltip-format": "Used Storage: {used}\nFree Storage: {free}\nTotal Storage: {total}",
         "tooltip": true
     },
