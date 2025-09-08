@@ -24,7 +24,7 @@ set $messenger /opt/Telegram/Telegram
 set $ide /opt/pycharm/bin/pycharm
 
 set $ddterm-id dropdown-terminal
-set $ddterm $term --title=$ddterm-id --app-id=$ddterm-id
+set $ddterm $term --override=colors.alpha=1.0 --title=$ddterm-id --app-id=$ddterm-id
 set $ddterm-resize resize set 100ppt 40ppt, move position 0 0
 
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
