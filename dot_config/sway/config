@@ -44,15 +44,18 @@ include .local
 #################
 
 # Colors : border bg text indicator child_border
-client.focused          #$colours_extra #$colours_bg_sub #$colours_extra #$colours_fg #$colours_extra
-client.focused_inactive #$colours_fg_sub #$colours_bg_sub #$colours_fg_sub #$colours_fg_sub #$colours_snd
-client.unfocused        #$colours_snd #$colours_bg #$colours_snd #$colours_snd #$colours_bg_sub
+client.focused          #$colours_accent #$colours_bg_sub #$colours_accent #$colours_fg #$colours_accent
+client.focused_inactive #$colours_fg_sub #$colours_bg_sub #$colours_fg_sub #$colours_fg_sub #$colours_fg_sub
+client.unfocused        #$colours_snd #$colours_bg #$colours_snd #$colours_snd #$colours_snd
 client.urgent           #$colours_red_sub #$colours_bg #$colours_red_sub #$colours_snd #$colours_red_sub
 
 default_border pixel 1
 default_floating_border pixel 1
 
-hide_edge_borders smart
+gaps inner 4
+gaps outer 0
+
+hide_edge_borders none
 floating_modifier $mod normal
 workspace_layout default
 focus_follows_mouse no
