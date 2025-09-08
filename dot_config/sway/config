@@ -44,8 +44,8 @@ include .local
 #################
 
 # Colors : border bg text indicator child_border
-client.focused          #$colours_snd #$colours_bg_sub #$colours_fg #$colours_fg #$colours_snd
-client.focused_inactive #$colours_snd #$colours_bg_sub #$colours_fg_sub #$colours_fg_sub #$colours_bg_sub
+client.focused          #$colours_fg_sub #$colours_bg_sub #$colours_fg #$colours_fg #$colours_fg_sub
+client.focused_inactive #$colours_snd #$colours_bg_sub #$colours_fg_sub #$colours_fg_sub #$colours_snd
 client.unfocused        #$colours_snd #$colours_bg #$colours_fg_sub #$colours_fg_sub #$colours_bg
 client.urgent           #$colours_red_sub #$colours_bg #$colours_red_sub #$colours_snd #$colours_red_sub
 
