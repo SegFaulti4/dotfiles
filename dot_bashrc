@@ -129,24 +129,32 @@ border=black,lightgray
 window=lightgray,lightgray
 shadow=black,gray
 title=black,lightgray
-button=white,black
-actbutton=white,black
+button=black,blue
+actbutton=white,blue
 compactbutton=black,lightgray
 checkbox=black,lightgray
-actcheckbox=lightgray,black
+actcheckbox=lightgray,blue
 entry=black,lightgray
 disentry=gray,lightgray
 label=black,lightgray
 listbox=black,lightgray
-actlistbox=black,lightgray
+actlistbox=black,blue
 sellistbox=lightgray,black
 actsellistbox=lightgray,black
 textbox=black,lightgray
-acttextbox=black,white
+acttextbox=black,blue
 emptyscale=,gray
-fullscale=,white
+fullscale=,blue
 helpline=white,black
 roottext=lightgrey,black
 '
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
 
 ___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi

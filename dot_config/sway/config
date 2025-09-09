@@ -17,8 +17,8 @@ set $menu fuzzel || pkill fuzzel
 set $bar waybar
 set $lock swaylock
 
-set $file-manager $term yazi
-set $text-editor $term micro
+set $file-manager $term bash -ic foot
+set $text-editor $term bash -ic micro
 set $browser google-chrome
 set $messenger /opt/Telegram/Telegram
 set $ide /opt/pycharm/bin/pycharm
