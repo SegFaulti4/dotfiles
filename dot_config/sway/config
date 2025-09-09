@@ -193,14 +193,14 @@ for_window [title="$ddterm-id"] {
 # AUTOSTART #
 #############
 
-exec swayidle -w \
+exec_always pkill swayidle; swayidle -w \
     timeout 300 '$lock' \
     timeout 600 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"' \
     before-sleep '$lock'
 
-exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
+exec_always pkill -f $WOBSOCK; rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
 exec gammastep -l 0:0 -m wayland -t 4000:4000
 
-exec nm-applet --indicator
-exec blueman-applet
+exec_always nm-applet --indicator
+exec_always blueman-applet
