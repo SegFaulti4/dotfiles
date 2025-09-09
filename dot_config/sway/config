@@ -17,7 +17,7 @@ set $menu fuzzel || pkill fuzzel
 set $bar waybar
 set $lock swaylock
 
-set $file-manager $term bash -ic foot
+set $file-manager $term bash -ic y
 set $text-editor $term bash -ic micro
 set $browser google-chrome
 set $messenger /opt/Telegram/Telegram
