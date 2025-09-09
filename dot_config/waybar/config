@@ -6,7 +6,12 @@
     "spacing": 0,
     "modules-left": ["sway/workspaces", "wlr/taskbar", "sway/mode", "sway/window"],
     "modules-center": ["clock"],
-    "modules-right": ["temperature", "memory", "disk", "network", "pulseaudio", "pulseaudio#mic", "battery", "sway/language", "keyboard-state", "custom/power"],
+    "modules-right": [
+    	"temperature", "memory", "disk",
+    	"tray",
+    	"pulseaudio", "pulseaudio#mic", "battery",
+    	"sway/language", "keyboard-state", "custom/power"
+    ],
     "sway/workspaces": {
         "disable-scroll": true,
         "disable-click": false,
@@ -55,6 +60,10 @@
         "tooltip-format": "Used Storage: {used}\nFree Storage: {free}\nTotal Storage: {total}",
         "tooltip": true
     },
+    "tray": {
+        "icon-size": 12,
+        "spacing": 17
+    },
     "network": {
         "format-wifi": "󰖩",
         "format-ethernet": "󰈀",
@@ -63,7 +72,7 @@
         "interval": 1,
         "tooltip-format": "Interface: {ifname}\nGateway: {gwaddr}\nIP: {ipaddr}/{cidr}\nSpeed: {bandwidthDownBits} | {bandwidthUpBits}",
         "tooltip-format-wifi": "Interface: {ifname}\nGateway: {gwaddr}\nIP: {ipaddr}/{cidr}\nSpeed: {bandwidthDownBits} | {bandwidthUpBits}\nWiFi SSID: {essid}\nWiFi Frequency: {frequency} MHz\nWiFi Signal: {signaldBm} dBm",
-        "on-click": "nm-connection-editor",
+        "on-click": "nm-applet",
         "tooltip": true
     },
     "bluetooth": {
@@ -91,7 +100,7 @@
         "tooltip": true
     },
     "pulseaudio#mic": {
-	"scroll-step": 0,
+        "scroll-step": 0,
         "format": "{format_source}",
         "format-source": "󰍬",
         "format-source-muted": "󰍭",
@@ -176,10 +185,6 @@
             "activated": "",
             "deactivated": ""
         }
-    },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
     },
     "clock": {
         // "timezone": "America/New_York",

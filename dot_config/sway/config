@@ -201,3 +201,6 @@ exec_always killall swayidle; swayidle -w \
 
 exec_always rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
 exec gammastep -l 0:0 -m wayland -t 4000:4000
+
+exec_always killall nm-applet && nm-applet --indicator
+exec_always blueman-applet
