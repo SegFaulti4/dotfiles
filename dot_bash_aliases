@@ -21,4 +21,3 @@ alias michman_keycloak_launch='michman_keycloak_dev down --remove-orphans && mic
 alias michman_keystone_launch='michman_keystone_dev down --remove-orphans && michman_keystone_dev build && michman_keystone_dev up -d --wait && michman_keystone_dev logs -f preload && michman_keystone_dev logs -f orchestrator provider'
 
 alias ssh-polus='ssh -i .ssh/id_rsa_hpc edu-cmc-skmodel25-628-08@polus.hpc.cs.msu.ru'
-alias scp-polus='scp -i .ssh/id_rsa_hpc edu-cmc-skmodel25-628-08@polus.hpc.cs.msu.ru'
