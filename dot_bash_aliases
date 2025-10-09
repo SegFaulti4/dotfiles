@@ -19,3 +19,6 @@ alias michman_test_launch='michman_dummy down --remove-orphans && michman_dummy 
 alias michman_launch='michman_dummy_dev down --remove-orphans && michman_dummy_dev build && michman_dummy_dev up -d --wait && michman_dummy_dev logs -f preload && michman_dummy_dev logs -f orchestrator provider'
 alias michman_keycloak_launch='michman_keycloak_dev down --remove-orphans && michman_keycloak_dev build && michman_keycloak_dev up -d --wait && michman_keycloak_dev logs -f preload && michman_keycloak_dev logs -f orchestrator provider'
 alias michman_keystone_launch='michman_keystone_dev down --remove-orphans && michman_keystone_dev build && michman_keystone_dev up -d --wait && michman_keystone_dev logs -f preload && michman_keystone_dev logs -f orchestrator provider'
+
+alias ssh-polus='ssh -i .ssh/id_rsa_hpc edu-cmc-skmodel25-628-08@polus.hpc.cs.msu.ru'
+alias scp-polus='scp -i .ssh/id_rsa_hpc edu-cmc-skmodel25-628-08@polus.hpc.cs.msu.ru'
