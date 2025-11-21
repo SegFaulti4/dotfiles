@@ -9,6 +9,7 @@ alias enter-venv='. ./venv/bin/activate'
 alias .enter-venv='. ./.venv/bin/activate'
 
 alias vpn-enable='sudo openvpn3 session-start --config ~/secrets/acloud.ovpn'
+alias vpn-disable='sudo openvpn3 session-manage --config ~/secrets/acloud.ovpn --disconnect'
 alias vpn-pass='keepassxc-cli clip ~/secrets/all.kdbx "acloud vpn"'
 alias vpn-totp='keepassxc-cli clip ~/secrets/all.kdbx "acloud vpn" --totp'
 
