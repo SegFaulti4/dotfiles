@@ -12,31 +12,43 @@ set $mod Mod4
 set $alt Mod1
 set $home /home/popovms
 
+# WM
 set $term foot
 set $menu fuzzel || pkill fuzzel
 set $bar waybar
 set $lock swaylock
 
+# desktop
 set $file-manager $term bash -ic y
 set $text-editor $term bash -ic micro
 set $browser google-chrome
 set $messenger /opt/Telegram/Telegram
 set $ide /opt/pycharm/bin/pycharm
 
+# dropdown
 set $ddterm-id dropdown-terminal
 set $ddterm-show swaymsg '[app_id="$ddterm-id"] scratchpad show'
 set $ddterm-launch $term --override=colors.alpha=1.0 --title=$ddterm-id --app-id=$ddterm-id
 set $ddterm-resize resize set 100ppt 40ppt, move position 0 0
 
-set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+# controls
+set $WOBSOCK_VOL $XDG_RUNTIME_DIR/wob_vol.sock
+set $WOBSOCK_MIC $XDG_RUNTIME_DIR/wob_mic.sock
+set $WOBSOCK_BRH $XDG_RUNTIME_DIR/wob_brh.sock
 
+# autostart
+set $nm-launch nm-applet --indicator
+set $bl-launch blueman-applet
+set $wob-vol-launch pkill -f $WOBSOCK_VOL; mkfifo $WOBSOCK_VOL; tail -f $WOBSOCK_VOL | wob --config $home/.config/wob/wob_vol.ini
+set $wob-mic-launch pkill -f $WOBSOCK_MIC; mkfifo $WOBSOCK_MIC; tail -f $WOBSOCK_MIC | wob --config $home/.config/wob/wob_mic.ini
+set $wob-brh-launch pkill -f $WOBSOCK_BRH; mkfifo $WOBSOCK_BRH; tail -f $WOBSOCK_BRH | wob --config $home/.config/wob/wob_brh.ini
+
+# screen
 set $screenshot grim -c - | wl-copy && dunstify --timeout 2000 "Screenshot copied to clipboard"
 set $screenshot-area grim -g "$(slurp)" - | wl-copy && dunstify --timeout 2000 "Screenshot of area copied to clipboard"
-
 set $screens-dir $home/pics
 set $file-screenshot $screens-dir/$(date +"%d-%m-%Y-%H-%M-%S")-shot.png
 set $file-screenshot-area $screens-dir/$(date +"%d-%m-%Y-%H-%M-%S")-shot-area.png
-
 set $save-screenshot mkdir -p $screens-dir && grim -c $file-screenshot && dunstify --timeout 2000 "Screenshot saved to $file-screenshot"
 set $save-screenshot-area mkdir -p $screens-dir && grim -g "$(slurp)" $file-screenshot-area && dunstify --timeout 2000 "Screenshot area saved to $file-screenshot-area"
 
@@ -93,15 +105,7 @@ include apps/gtk.conf
 ################
 
 bindsym --to-code $mod+Return exec $term
-bindsym --to-code $mod+Shift+o exec swaymsg bar mode invisible
-bindsym --to-code $mod+Shift+p exec swaymsg bar mode dock
 bindsym --to-code $mod+d exec $menu
-
-bindsym --to-code $mod+Shift+f exec $file-manager
-bindsym --to-code $mod+Shift+t exec $text-editor
-bindsym --to-code $mod+Shift+b exec $browser
-bindsym --to-code $mod+Shift+m exec $messenger
-bindsym --to-code $mod+Shift+i exec $ide
 
 bindsym --to-code $mod+Shift+q kill
 bindsym --to-code $mod+Shift+c reload
@@ -164,19 +168,40 @@ mode "resize" {
 }
 bindsym --to-code $mod+r mode "resize"
 
-bindsym XF86AudioRaiseVolume exec pamixer -i 5 && pamixer --get-volume > $WOBSOCK
-bindsym XF86AudioLowerVolume exec pamixer -d 5 && pamixer --get-volume > $WOBSOCK
-bindsym XF86AudioMute exec pamixer --toggle-mute && ( [ "$(pamixer --get-mute)" = "true" ] && echo 0 > $WOBSOCK ) || pamixer --get-volume > $WOBSOCK
+# WM
+bindsym --to-code $mod+l exec $lock
+bindsym --to-code $mod+Shift+o exec swaymsg bar mode invisible
+bindsym --to-code $mod+Shift+p exec swaymsg bar mode dock
 
+# desktop
+bindsym --to-code $mod+Shift+f exec $file-manager
+bindsym --to-code $mod+Shift+t exec $text-editor
+bindsym --to-code $mod+Shift+b exec $browser
+bindsym --to-code $mod+Shift+m exec $messenger
+bindsym --to-code $mod+Shift+i exec $ide
+
+# dropdown
 bindsym --to-code $mod+Shift+d exec $ddterm-show || $ddterm-launch
 
+# controls volume
+bindsym XF86AudioRaiseVolume exec pamixer -i 5 && pamixer --get-volume > $WOBSOCK_VOL
+bindsym XF86AudioLowerVolume exec pamixer -d 5 && pamixer --get-volume > $WOBSOCK_VOL
+bindsym XF86AudioMute exec pamixer --toggle-mute && ( [ "$(pamixer --get-mute)" = "true" ] && echo 0 > $WOBSOCK_VOL ) || pamixer --get-volume > $WOBSOCK_VOL
+
+# controls microphone
+bindsym $alt+XF86AudioRaiseVolume exec pamixer --default-source --increase 5 && pamixer --default-source --get-volume > $WOBSOCK_MIC
+bindsym $alt+XF86AudioLowerVolume exec pamixer --default-source --decrease 5 && pamixer --default-source --get-volume > $WOBSOCK_MIC
+bindsym $alt+XF86AudioMute exec pamixer --default-source --toggle-mute && ( [ "$(pamixer --default-source --get-mute)" = "true" ] && echo 0 > $WOBSOCK_MIC ) || pamixer --default-source --get-volume > $WOBSOCK_MIC
+
+# controls brightness
+bindsym XF86MonBrightnessUp exec brightnessctl s 5%+ | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK_BRH
+bindsym XF86MonBrightnessDown exec brightnessctl s 5%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK_BRH
+
+# screen
 bindsym Print exec $screenshot-area
 bindsym Shift+Print exec $save-screenshot-area
-
 bindsym $mod+Print exec $screenshot
 bindsym $mod+Shift+Print exec $save-screenshot
-
-bindsym $mod+l exec $lock
 
 ####################
 # WINDOW OVERRIDES #
@@ -205,14 +230,14 @@ for_window [title="$ddterm-id"] {
 exec swayidle -w timeout 300 '$lock' timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' before-sleep '$lock'
 exec gammastep -l 0:0 -m wayland -t 4000:4000
 
-set $nm-launch nm-applet --indicator
-set $bl-launch blueman-applet
-set $wob-launch pkill -f $WOBSOCK; mkfifo $WOBSOCK; tail -f $WOBSOCK | wob
-
 exec $nm-launch
 exec $bl-launch
-exec $wob-launch
+exec $wob-vol-launch
+exec $wob-mic-launch
+exec $wob-brh-launch
 
 exec_always $nm-launch
 exec_always $bl-launch
-exec_always $wob-launch
+exec_always $wob-vol-launch
+exec_always $wob-mic-launch
+exec_always $wob-brh-launch
