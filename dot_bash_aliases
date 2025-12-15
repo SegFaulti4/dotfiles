@@ -11,6 +11,9 @@ alias venv-.create='python3 -m venv .venv'
 alias venv-enter='. ./venv/bin/activate'
 alias venv-.enter='. ./.venv/bin/activate'
 
+alias qmk-compile='qmk compile -kb ferris/sweep -km 3x5'
+alias qmk-flash='qmk flash -kb ferris/sweep -km 3x5'
+
 alias vpn-enable='sudo openvpn3 session-start --config ~/secrets/acloud.ovpn'
 alias vpn-disable='sudo openvpn3 session-manage --config ~/secrets/acloud.ovpn --disconnect'
 alias vpn-pass='keepassxc-cli clip ~/secrets/all.kdbx "acloud vpn"'
