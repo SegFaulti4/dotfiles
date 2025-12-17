@@ -1,2 +1,4 @@
 dot_ssh
 secrets
+script/*
+!script/jetbra
