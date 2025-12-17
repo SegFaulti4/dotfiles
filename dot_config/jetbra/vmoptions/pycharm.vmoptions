@@ -1,5 +1,5 @@
 -Xms128m
--Xmx1024m
+-Xmx4096m
 -XX:ReservedCodeCacheSize=512m
 -XX:+IgnoreUnrecognizedVMOptions
 -XX:+UseG1GC
@@ -19,6 +19,5 @@
 --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED
 --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED
 
--javaagent:/home/popovms/scripts/jetbra/ja-netfilter.jar=jetbrains
--Didea.suppressed.plugins.set.selector=radler
+-javaagent:/home/popovms/.config/jetbra/ja-netfilter.jar=jetbrains
 -Dawt.toolkit.name=WLToolkit

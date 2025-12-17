@@ -8,5 +8,4 @@
 .config/yazi/theme.toml
 .ssh
 secrets
-script/*
-!script/jetbra
+scripts
