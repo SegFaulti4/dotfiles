@@ -96,7 +96,6 @@ include apps/fuzzel.conf
 include apps/waybar.conf
 include apps/swaylock.conf
 include apps/wob.conf
-include apps/micro.conf
 include apps/yazi.conf
 include apps/gtk.conf
 
