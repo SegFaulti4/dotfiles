@@ -21,7 +21,7 @@ set $lock swaylock
 # desktop
 set $file-manager $term bash -ic y
 set $text-editor $term bash -ic micro
-set $browser google-chrome
+set $browser firefox
 set $messenger /opt/Telegram/Telegram
 set $ide /opt/pycharm/bin/pycharm
 
@@ -228,7 +228,7 @@ for_window [title="$ddterm-id"] {
 
 exec swayidle -w timeout 300 '$lock' timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' before-sleep '$lock'
 exec gammastep -l 0:0 -m wayland -t 3800:3800
-exec command -v openrgb && openrgb --profile Default
+exec command -v openrgb && openrgb --profile Min
 exec clipman
 
 exec $nm-launch
