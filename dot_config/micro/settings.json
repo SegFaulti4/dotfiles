@@ -1,0 +1,31 @@
+{
+    "colorscheme": "simple",
+    "tabsize": 4,
+    "tabstospaces": true,
+    "eofnewline": false,
+    "*.mk": {
+        "filetype": "makefile"
+    },
+    "Makefile": {
+        "filetype": "makefile"
+    },
+    "makefile": {
+        "filetype": "makefile"
+    },
+    "ft:makefile": {
+        "tabstospaces": false
+    },
+    "*.yml": {
+        "filetype": "yaml"
+    },
+    "*.yaml": {
+        "filetype": "yaml"
+    },
+    "ft:yaml": {
+        "tabsize": 2
+    },
+    "lsp.server": "python=pylsp",
+    "lsp.formatOnSave": true,
+    "lsp.tabcompletion": true,
+    "lsp.autocompleteDetails": false
+}

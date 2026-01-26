@@ -93,11 +93,11 @@ bar {
 
 include apps/foot.conf
 include apps/fuzzel.conf
-include apps/waybar.conf
+include apps/gtk.conf
 include apps/swaylock.conf
+include apps/waybar.conf
 include apps/wob.conf
 include apps/yazi.conf
-include apps/gtk.conf
 
 ################
 # KEY BINDINGS #

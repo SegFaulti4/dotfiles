@@ -1,11 +1,13 @@
 .config/sway/.local
 .config/foot/foot.ini
 .config/fuzzel/fuzzel.ini
-.config/micro/settings.json
 .config/swaylock/config
 .config/waybar/style.css
 .config/wob/wob.ini
 .config/yazi/theme.toml
+.config/micro/backups/**
+.config/micro/buffers/**
+.config/micro/plug/**
 .ssh
 secrets
-scripts
+sync
