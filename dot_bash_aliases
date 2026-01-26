@@ -2,6 +2,8 @@ alias ll='ls -l'
 alias la='ls -lA'
 alias l='ls -CF'
 
+alias du-dir='du -h --max-depth=0'
+
 alias ssh-no='ssh -o StrictHostKeychecking=no'
 alias scp-no='scp -o StrictHostKeychecking=no'
 
