@@ -2,16 +2,19 @@ alias ll='ls -l'
 alias la='ls -lA'
 alias l='ls -CF'
 
-alias du-dir='du -h --max-depth=0'
-
 alias ssh-no='ssh -o StrictHostKeychecking=no'
 alias scp-no='scp -o StrictHostKeychecking=no'
 
 alias venv-create='python3 -m venv venv'
-alias venv-.create='python3 -m venv .venv'
+alias .venv-create='python3 -m venv .venv'
 
 alias venv-enter='. ./venv/bin/activate'
-alias venv-.enter='. ./.venv/bin/activate'
+alias .venv-enter='. ./.venv/bin/activate'
+
+alias venv-req='pip install -r requirements.txt'
+
+alias venv-from-req='venv-create && venv-enter && venv-req'
+alias .venv-from-req='.venv-create && .venv-enter && venv-req'
 
 alias qmk-compile='qmk compile -kb ferris/sweep -km 3x5'
 alias qmk-flash='qmk flash -kb ferris/sweep -km 3x5'
