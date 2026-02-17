@@ -5,32 +5,51 @@ alias l='ls -CF'
 alias ssh-no='ssh -o StrictHostKeychecking=no'
 alias scp-no='scp -o StrictHostKeychecking=no'
 
+alias pip-req='pip install -r requirements.txt'
 alias venv-create='python3 -m venv venv'
 alias .venv-create='python3 -m venv .venv'
-
 alias venv-enter='. ./venv/bin/activate'
 alias .venv-enter='. ./.venv/bin/activate'
-
-alias venv-req='pip install -r requirements.txt'
-
-alias venv-from-req='venv-create && venv-enter && venv-req'
-alias .venv-from-req='.venv-create && .venv-enter && venv-req'
+alias venv-req='venv-create && venv-enter && pip-req'
+alias .venv-req='.venv-create && .venv-enter && pip-req'
 
 alias qmk-compile='qmk compile -kb ferris/sweep -km 3x5'
 alias qmk-flash='qmk flash -kb ferris/sweep -km 3x5'
 
-alias vpn-enable='sudo openvpn3 session-start --config ~/secrets/acloud.ovpn'
+alias kdbx-clip='keepassxc-cli clip ~/secrets/all.kdbx'
+alias acloud-pass='kdbx-clip "acloud services"'
+alias acloud-totp='acloud-pass --totp'
+alias vpn-pass='kdbx-clip "acloud vpn"'
+alias vpn-totp='vpn-pass --totp'
+
+alias kdbx-show-user='keepassxc-cli show -a username ~/secrets/all.kdbx'
+alias kdbx-show-pass='keepassxc-cli show -sa password ~/secrets/all.kdbx'
+alias kdbx-show-totp='keepassxc-cli show --totp ~/secrets/all.kdbx'
+alias vpn-show-user='kdbx-show-user "acloud vpn"'
+alias vpn-show-pass='kdbx-show-pass "acloud vpn"'
+alias vpn-show-totp='kdbx-show-totp "acloud vpn"'
+alias isp-show-user='kdbx-show-user "ispras services"'
+alias isp-show-pass='kdbx-show-pass "ispras services"'
+
+alias vpn-enable='
+read -s -p "[acloud vpn] password for $(whoami): " _p; echo;
+echo -e "$(echo $_p | vpn-show-user -q)\n$(echo $_p | vpn-show-pass -q)\n$(echo $_p | vpn-show-totp -q)" | \
+sudo openvpn3 session-start --config ~/secrets/acloud.ovpn
+'
 alias vpn-disable='sudo openvpn3 session-manage --config ~/secrets/acloud.ovpn --disconnect'
-alias vpn-pass='keepassxc-cli clip ~/secrets/all.kdbx "acloud vpn"'
-alias vpn-totp='keepassxc-cli clip ~/secrets/all.kdbx "acloud vpn" --totp'
 
-alias acloud-pass='keepassxc-cli clip ~/secrets/all.kdbx "acloud services"'
-alias acloud-totp='keepassxc-cli clip ~/secrets/all.kdbx "acloud services" --totp'
+alias isp-enable='
+read -s -p "[ispras vpn] password for $(whoami): " _p; echo;
+echo -e "$(echo $_p | isp-show-user -q)\n$(echo $_p | isp-show-pass -q)" | \
+sudo openvpn3 session-start --config ~/secrets/aviator.ovpn
+'
+alias isp-disable='sudo openvpn3 session-manage --config ~/secrets/aviator.ovpn --disconnect'
 
-alias michman_test_launch='michman_dummy down --remove-orphans && michman_dummy build && michman_dummy up --abort-on-container-failure'
-alias michman_launch='michman_dummy_dev down --remove-orphans && michman_dummy_dev build && michman_dummy_dev up -d --wait && michman_dummy_dev logs -f preload && michman_dummy_dev logs -f orchestrator provider'
-alias michman_mock_launch='michman_dummy down --remove-orphans && michman_dummy build && michman_dummy up -d --wait && michman_dummy logs -f preload && michman_dummy logs -f orchestrator provider'
-alias michman_keycloak_launch='michman_keycloak_dev down --remove-orphans && michman_keycloak_dev build && michman_keycloak_dev up -d --wait && michman_keycloak_dev logs -f preload && michman_keycloak_dev logs -f orchestrator provider'
-alias michman_keystone_launch='michman_keystone_dev down --remove-orphans && michman_keystone_dev build && michman_keystone_dev up -d --wait && michman_keystone_dev logs -f preload && michman_keystone_dev logs -f orchestrator provider'
+alias michman-launch='michman_dummy_dev down --remove-orphans && michman_dummy_dev build && michman_dummy_dev up -d --wait && michman_dummy_dev logs -f preload && michman_dummy_dev logs -f orchestrator provider'
+alias michman-launch-mock='michman_dummy down --remove-orphans && michman_dummy build && michman_dummy up -d --wait && michman_dummy logs -f preload && michman_dummy logs -f orchestrator provider'
+alias michman-launch-keycloak='michman_keycloak_dev down --remove-orphans && michman_keycloak_dev build && michman_keycloak_dev up -d --wait && michman_keycloak_dev logs -f preload && michman_keycloak_dev logs -f orchestrator provider'
+alias michman-launch-keystone='michman_keystone_dev down --remove-orphans && michman_keystone_dev build && michman_keystone_dev up -d --wait && michman_keystone_dev logs -f preload && michman_keystone_dev logs -f orchestrator provider'
+alias michman-launch-test='michman_dummy down --remove-orphans && michman_dummy build && michman_dummy up --abort-on-container-failure'
 
-alias docker-all-remove='docker rm -f $(docker ps -aq)'
+alias docker-rm-all='docker rm -f $(docker ps -aq)'
+alias docker-rmi-all='docker rmi $(docker images -aq)'
