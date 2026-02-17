@@ -32,14 +32,14 @@ alias isp-show-user='kdbx-show-user "ispras services"'
 alias isp-show-pass='kdbx-show-pass "ispras services"'
 
 alias vpn-enable='
-read -s -p "[acloud vpn] password for $(whoami): " _p; echo;
+_p=""; read -s -p "[acloud vpn] password for $(whoami): " _p; echo;
 echo -e "$(echo $_p | vpn-show-user -q)\n$(echo $_p | vpn-show-pass -q)\n$(echo $_p | vpn-show-totp -q)" | \
 sudo openvpn3 session-start --config ~/secrets/acloud.ovpn
 '
 alias vpn-disable='sudo openvpn3 session-manage --config ~/secrets/acloud.ovpn --disconnect'
 
 alias isp-enable='
-read -s -p "[ispras vpn] password for $(whoami): " _p; echo;
+_p=""; read -s -p "[ispras vpn] password for $(whoami): " _p; echo;
 echo -e "$(echo $_p | isp-show-user -q)\n$(echo $_p | isp-show-pass -q)" | \
 sudo openvpn3 session-start --config ~/secrets/aviator.ovpn
 '
