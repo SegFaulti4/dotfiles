@@ -87,16 +87,7 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-#alias ll='ls -l'
-#alias la='ls -A'
-#alias l='ls -CF'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
+# include aliases
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -112,11 +103,19 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# include custom completions
 completions=(tosca_michman.sh openstack_cli.sh ya.bash yazi.bash)
-
 for compl in "${completions[@]}"; do
     if [ -f ~/.completion/$compl ]; then
         . ~/.completion/$compl
+    fi
+done
+
+# include bin paths
+bin_paths=("$HOME/bin" "$HOME/go/bin")
+for bin_path in "${bin_paths[@]}"; do
+    if [ -d $bin_path ] ; then
+        PATH="$bin_path:$PATH"
     fi
 done
 
