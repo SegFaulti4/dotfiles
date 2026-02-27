@@ -173,7 +173,7 @@ bindsym --to-code $mod+Shift+o exec swaymsg bar mode invisible
 bindsym --to-code $mod+Shift+p exec swaymsg bar mode dock
 
 # desktop
-bindsym --to-code $mod+Shift+f exec $file-manager
+bindsym --to-code $mod+Shift+y exec $file-manager
 bindsym --to-code $mod+Shift+t exec $text-editor
 bindsym --to-code $mod+Shift+b exec $browser
 bindsym --to-code $mod+Shift+m exec $messenger
