@@ -15,8 +15,8 @@ alias venvcreate='python3 -m venv venv'
 alias .venvcreate='python3 -m venv .venv'
 alias venventer='. ./venv/bin/activate'
 alias .venventer='. ./.venv/bin/activate'
-alias venvreq='venv-create && venv-enter && pip-req'
-alias .venvreq='.venv-create && .venv-enter && pip-req'
+alias venvreq='venvcreate && venventer && pipreq'
+alias .venvreq='.venvcreate && .venventer && pipreq'
 
 alias dockerrmall='docker rm -f $(docker ps -aq)'
 alias dockerrmiall='docker rmi $(docker images -aq)'
@@ -25,30 +25,30 @@ alias qmkcompile='qmk compile -kb ferris/sweep -km 3x5'
 alias qmkflash='qmk flash -kb ferris/sweep -km 3x5'
 
 alias kdbxclip='keepassxc-cli clip ~/secrets/all.kdbx'
-alias acloudpass='kdbx-clip "acloud services"'
-alias acloudtotp='acloud-pass --totp'
-alias vpnpass='kdbx-clip "acloud vpn"'
-alias vpntotp='vpn-pass --totp'
+alias acloudpass='kdbxclip "acloud services"'
+alias acloudtotp='acloudpass --totp'
+alias vpnpass='kdbxclip "acloud vpn"'
+alias vpntotp='vpnpass --totp'
 
 alias kdbxshowuser='keepassxc-cli show -a username ~/secrets/all.kdbx'
 alias kdbxshowpass='keepassxc-cli show -sa password ~/secrets/all.kdbx'
 alias kdbxshowtotp='keepassxc-cli show --totp ~/secrets/all.kdbx'
-alias vpnshowuser='kdbx-show-user "acloud vpn"'
-alias vpnshowpass='kdbx-show-pass "acloud vpn"'
-alias vpnshowtotp='kdbx-show-totp "acloud vpn"'
-alias ispshowuser='kdbx-show-user "ispras services"'
-alias ispshowpass='kdbx-show-pass "ispras services"'
+alias vpnshowuser='kdbxshowuser "acloud vpn"'
+alias vpnshowpass='kdbxshowpass "acloud vpn"'
+alias vpnshowtotp='kdbxshowtotp "acloud vpn"'
+alias ispshowuser='kdbxshowuser "ispras services"'
+alias ispshowpass='kdbxshowpass "ispras services"'
 
 alias vpnenable='
 _p=""; read -s -p "[acloud vpn] password for $(whoami): " _p; echo;
-echo -e "$(echo $_p | vpn-show-user -q)\n$(echo $_p | vpn-show-pass -q)\n$(echo $_p | vpn-show-totp -q)" | \
+echo -e "$(echo $_p | vpnshowuser -q)\n$(echo $_p | vpnshowpass -q)\n$(echo $_p | vpnshowtotp -q)" | \
 sudo openvpn3 session-start --config ~/secrets/acloud.ovpn
 '
 alias vpndisable='sudo openvpn3 session-manage --config ~/secrets/acloud.ovpn --disconnect'
 
 alias ispenable='
 _p=""; read -s -p "[ispras vpn] password for $(whoami): " _p; echo;
-echo -e "$(echo $_p | isp-show-user -q)\n$(echo $_p | isp-show-pass -q)" | \
+echo -e "$(echo $_p | ispshowuser -q)\n$(echo $_p | ispshowpass -q)" | \
 sudo openvpn3 session-start --config ~/secrets/aviator.ovpn
 '
 alias ispdisable='sudo openvpn3 session-manage --config ~/secrets/aviator.ovpn --disconnect'
