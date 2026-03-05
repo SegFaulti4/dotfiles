@@ -53,8 +53,10 @@ sudo openvpn3 session-start --config ~/secrets/aviator.ovpn
 '
 alias ispdisable='sudo openvpn3 session-manage --config ~/secrets/aviator.ovpn --disconnect'
 
-alias michmanlaunch='michman_dummy_dev down --remove-orphans && michman_dummy_dev build && michman_dummy_dev up -d --wait && michman_dummy_dev logs -f preload && michman_dummy_dev logs -f orchestrator provider'
+alias michmanlaunch='michman_dummy_dev down --remove-orphans && michman_dummy_dev build && michman_dummy_dev up -d --wait && michman_dummy_dev logs -f preload orchestrator provider'
 alias michmanlaunchmock='michman_dummy down --remove-orphans && michman_dummy build && michman_dummy up -d --wait && michman_dummy logs -f preload && michman_dummy logs -f orchestrator provider'
 alias michmanlaunchkeycloak='michman_keycloak_dev down --remove-orphans && michman_keycloak_dev build && michman_keycloak_dev up -d --wait && michman_keycloak_dev logs -f preload && michman_keycloak_dev logs -f orchestrator provider'
 alias michmanlaunchkeystone='michman_keystone_dev down --remove-orphans && michman_keystone_dev build && michman_keystone_dev up -d --wait && michman_keystone_dev logs -f preload && michman_keystone_dev logs -f orchestrator provider'
 alias michmanlaunchtest='michman_dummy down --remove-orphans && michman_dummy build && michman_dummy up --abort-on-container-failure'
+
+alias pucciniparse="puccini-tosca parse -x substitution_mappings.requirements.permissive,imports.implicit.disable"
