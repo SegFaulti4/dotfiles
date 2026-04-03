@@ -1,31 +1,31 @@
 {
-    "colorscheme": "simple",
-    "tabsize": 4,
-    "tabstospaces": true,
-    "eofnewline": false,
     "*.mk": {
         "filetype": "makefile"
-    },
-    "Makefile": {
-        "filetype": "makefile"
-    },
-    "makefile": {
-        "filetype": "makefile"
-    },
-    "ft:makefile": {
-        "tabstospaces": false
-    },
-    "*.yml": {
-        "filetype": "yaml"
     },
     "*.yaml": {
         "filetype": "yaml"
     },
+    "*.yml": {
+        "filetype": "yaml"
+    },
+    "Makefile": {
+        "filetype": "makefile"
+    },
+    "colorscheme": "simple",
+    "eofnewline": false,
+    "ft:makefile": {
+        "tabstospaces": false
+    },
     "ft:yaml": {
         "tabsize": 2
     },
-    "lsp.server": "python=pylsp",
+    "lsp.autocompleteDetails": false,
     "lsp.formatOnSave": true,
+    "lsp.server": "python=pylsp",
     "lsp.tabcompletion": true,
-    "lsp.autocompleteDetails": false
+    "makefile": {
+        "filetype": "makefile"
+    },
+    "softwrap": true,
+    "tabstospaces": true
 }
