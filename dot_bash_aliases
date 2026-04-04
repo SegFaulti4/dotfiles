@@ -25,33 +25,38 @@ alias qmkcompile='qmk compile -kb ferris/sweep -km 3x5'
 alias qmkflash='qmk flash -kb ferris/sweep -km 3x5'
 
 alias kdbxclip='keepassxc-cli clip ~/secrets/all.kdbx'
-alias acloudpass='kdbxclip "acloud services"'
-alias acloudtotp='acloudpass --totp'
-alias vpnpass='kdbxclip "acloud vpn"'
-alias vpntotp='vpnpass --totp'
+alias jpass='kdbxclip "acloud services"'
+alias jtotp='jpass --totp'
+alias jvpnpass='kdbxclip "acloud vpn"'
+alias jvpntotp='jvpnpass --totp'
+alias ncmupass='kdbxclip "ispras ncmu"'
+alias imailpass='kdbxclip "ispras mail"'
 
 alias kdbxshowuser='keepassxc-cli show -a username ~/secrets/all.kdbx'
 alias kdbxshowpass='keepassxc-cli show -sa password ~/secrets/all.kdbx'
 alias kdbxshowtotp='keepassxc-cli show --totp ~/secrets/all.kdbx'
-alias vpnshowuser='kdbxshowuser "acloud vpn"'
-alias vpnshowpass='kdbxshowpass "acloud vpn"'
-alias vpnshowtotp='kdbxshowtotp "acloud vpn"'
-alias ispshowuser='kdbxshowuser "ispras services"'
-alias ispshowpass='kdbxshowpass "ispras services"'
+alias jvpnshowuser='kdbxshowuser "acloud vpn"'
+alias jvpnshowpass='kdbxshowpass "acloud vpn"'
+alias jvpnshowtotp='kdbxshowtotp "acloud vpn"'
+alias ivpnshowuser='kdbxshowuser "ispras services"'
+alias ivpnshowpass='kdbxshowpass "ispras services"'
 
-alias vpnenable='
+alias jenable='
 _p=""; read -s -p "[acloud vpn] password for $(whoami): " _p; echo;
-echo -e "$(echo $_p | vpnshowuser -q)\n$(echo $_p | vpnshowpass -q)\n$(echo $_p | vpnshowtotp -q)" | \
+echo -e "$(echo $_p | jvpnshowuser -q)\n$(echo $_p | jvpnshowpass -q)\n$(echo $_p | jvpnshowtotp -q)" | \
 sudo openvpn3 session-start --config ~/secrets/acloud.ovpn
 '
-alias vpndisable='sudo openvpn3 session-manage --config ~/secrets/acloud.ovpn --disconnect'
+alias jdisable='sudo openvpn3 session-manage --config ~/secrets/acloud.ovpn --disconnect'
 
-alias ispenable='
+alias ienable='
 _p=""; read -s -p "[ispras vpn] password for $(whoami): " _p; echo;
-echo -e "$(echo $_p | ispshowuser -q)\n$(echo $_p | ispshowpass -q)" | \
+echo -e "$(echo $_p | ivpnshowuser -q)\n$(echo $_p | ivpnshowpass -q)" | \
 sudo openvpn3 session-start --config ~/secrets/aviator.ovpn
 '
-alias ispdisable='sudo openvpn3 session-manage --config ~/secrets/aviator.ovpn --disconnect'
+alias idisable='sudo openvpn3 session-manage --config ~/secrets/aviator.ovpn --disconnect'
+
+alias penable='sudo awg-quick up ~/secrets/amnezia/wg0.conf'
+alias pdisable='sudo awg-quick down ~/secrets/amnezia/wg0.conf'
 
 alias michmanlaunch='michman_dummy_dev down --remove-orphans && michman_dummy_dev build && michman_dummy_dev up -d --wait && michman_dummy_dev logs -f preload orchestrator provider'
 alias michmanlaunchmock='michman_dummy down --remove-orphans && michman_dummy build && michman_dummy up -d --wait && michman_dummy logs -f preload && michman_dummy logs -f orchestrator provider'
