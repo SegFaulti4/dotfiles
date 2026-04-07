@@ -39,9 +39,9 @@ set $WOBSOCK_BRH $XDG_RUNTIME_DIR/wob_brh.sock
 # autostart
 set $nm-launch nm-applet --indicator
 set $bl-launch blueman-applet
-set $wob-vol-launch pkill -f $WOBSOCK_VOL; mkfifo $WOBSOCK_VOL; tail -f $WOBSOCK_VOL | wob --config $home/.config/wob/wob_vol.ini
-set $wob-mic-launch pkill -f $WOBSOCK_MIC; mkfifo $WOBSOCK_MIC; tail -f $WOBSOCK_MIC | wob --config $home/.config/wob/wob_mic.ini
-set $wob-brh-launch pkill -f $WOBSOCK_BRH; mkfifo $WOBSOCK_BRH; tail -f $WOBSOCK_BRH | wob --config $home/.config/wob/wob_brh.ini
+set $wob-vol-launch pkill -f $WOBSOCK_VOL; rm $WOBSOCK_VOL; mkfifo $WOBSOCK_VOL; tail -f $WOBSOCK_VOL | wob --config $home/.config/wob/wob_vol.ini
+set $wob-mic-launch pkill -f $WOBSOCK_MIC; rm $WOBSOCK_MIC; mkfifo $WOBSOCK_MIC; tail -f $WOBSOCK_MIC | wob --config $home/.config/wob/wob_mic.ini
+set $wob-brh-launch pkill -f $WOBSOCK_BRH; rm $WOBSOCK_BRH; mkfifo $WOBSOCK_BRH; tail -f $WOBSOCK_BRH | wob --config $home/.config/wob/wob_brh.ini
 
 # screen
 set $screenshot grim -c - | wl-copy && dunstify --timeout 2000 "Screenshot copied to clipboard"
@@ -228,8 +228,8 @@ for_window [title="$ddterm-id"] {
 
 exec swayidle -w timeout 300 '$lock' timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' before-sleep '$lock'
 exec gammastep -l 0:0 -m wayland -t 3800:3800
-exec command -v openrgb && openrgb --profile Min
-exec clipman
+exec command -v openrgb && openrgb --profile Default
+# exec clipman
 
 exec $nm-launch
 exec $bl-launch
