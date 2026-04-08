@@ -7,8 +7,8 @@ alias aptsearch='sudo PAGER=cat apt search --names-only'
 alias sshno='ssh -o StrictHostKeychecking=no'
 alias scpno='scp -o StrictHostKeychecking=no'
 
-alias gitpullsync='git --git-dir=~/sync/.git pull --rebase'
-alias gitpullsetup='git --git-dir=~/clones/setup/.git pull --rebase'
+alias gitpullsync='git --git-dir=$HOME/sync/.git pull --rebase'
+alias gitpullsetup='git --git-dir=$HOME/clones/setup/.git pull --rebase'
 
 alias pipreq='pip install -r requirements.txt'
 alias venvcreate='python3 -m venv venv'
