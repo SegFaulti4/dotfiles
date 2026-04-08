@@ -7,8 +7,8 @@ alias aptsearch='sudo PAGER=cat apt search --names-only'
 alias sshno='ssh -o StrictHostKeychecking=no'
 alias scpno='scp -o StrictHostKeychecking=no'
 
-alias gitpullsync='git --git-dir=$HOME/sync/.git pull --rebase'
-alias gitpullsetup='git --git-dir=$HOME/clones/setup/.git pull --rebase'
+alias gitpullsync='git --git-dir=$HOME/sync/.git pull --rebase --autostash'
+alias gitpullsetup='git --git-dir=$HOME/clones/setup/.git pull --rebase --autostash'
 
 alias pipreq='pip install -r requirements.txt'
 alias venvcreate='python3 -m venv venv'
@@ -58,10 +58,15 @@ alias idisable='sudo openvpn3 session-manage --config ~/secrets/aviator.ovpn --d
 alias penable='sudo awg-quick up ~/secrets/amnezia/wg0.conf'
 alias pdisable='sudo awg-quick down ~/secrets/amnezia/wg0.conf'
 
-alias michmanlaunch='michman_dummy_dev down --remove-orphans && michman_dummy_dev build && michman_dummy_dev up -d --wait && michman_dummy_dev logs -f preload orchestrator provider'
-alias michmanlaunchmock='michman_dummy down --remove-orphans && michman_dummy build && michman_dummy up -d --wait && michman_dummy logs -f preload && michman_dummy logs -f orchestrator provider'
-alias michmanlaunchkeycloak='michman_keycloak_dev down --remove-orphans && michman_keycloak_dev build && michman_keycloak_dev up -d --wait && michman_keycloak_dev logs -f preload && michman_keycloak_dev logs -f orchestrator provider'
-alias michmanlaunchkeystone='michman_keystone_dev down --remove-orphans && michman_keystone_dev build && michman_keystone_dev up -d --wait && michman_keystone_dev logs -f preload && michman_keystone_dev logs -f orchestrator provider'
+alias michmandown='michman_dummy_dev down --remove-orphans'
+alias michmandownmock='michman_dummy down --remove-orphans'
+alias michmandownkeycloak='michman_keycloak_dev down --remove-orphans'
+alias michmandownkeystone='michman_keystone_dev down --remove-orphans'
+
+alias michmanlaunch='michmandown && michman_dummy_dev build && michman_dummy_dev up -d --wait && michman_dummy_dev logs -f preload orchestrator provider'
+alias michmanlaunchmock='michmandownmock && michman_dummy build && michman_dummy up -d --wait && michman_dummy logs -f preload && michman_dummy logs -f orchestrator provider'
+alias michmanlaunchkeycloak='michmandownkeycloak && michman_keycloak_dev build && michman_keycloak_dev up -d --wait && michman_keycloak_dev logs -f preload && michman_keycloak_dev logs -f orchestrator provider'
+alias michmanlaunchkeystone='michmandownkeystone && michman_keystone_dev build && michman_keystone_dev up -d --wait && michman_keystone_dev logs -f preload && michman_keystone_dev logs -f orchestrator provider'
 alias michmanlaunchtest='michman_dummy down --remove-orphans && michman_dummy build && michman_dummy up --abort-on-container-failure'
 
 alias pucciniparse="puccini-tosca parse -x substitution_mappings.requirements.permissive,imports.implicit.disable"
