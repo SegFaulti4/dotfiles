@@ -69,5 +69,5 @@ alias michmanlaunchkeycloak='michmandownkeycloak && michman_keycloak_dev build &
 alias michmanlaunchkeystone='michmandownkeystone && michman_keystone_dev build && michman_keystone_dev up -d --wait && michman_keystone_dev logs -f preload && michman_keystone_dev logs -f orchestrator provider'
 alias michmanlaunchtest='michman_dummy down --remove-orphans && michman_dummy build && michman_dummy up --abort-on-container-failure'
 
-alias michmanpreload='michman_dummy up --no-deps --force-recreate preload'
+alias michmanpreload='michman_dummy_dev up --no-deps --force-recreate preload'
 alias pucciniparse="puccini-tosca parse -x substitution_mappings.requirements.permissive,imports.implicit.disable"
